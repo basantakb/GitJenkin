@@ -1,10 +1,10 @@
-package com.vsysq.base;
+package com.tests;
 
-import org.testng.annotations.AfterMethod;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 
@@ -18,14 +18,11 @@ public class TestBase {
 	}
 
 	private void setDriver(String browserType, String appURL) {
-		switch (browserType) {
-		case "chrome":
+		if ("chrome".equals(browserType)) {
 			driver = initChromeDriver(appURL);
-			break;
-		case "firefox":
+		} else if ("firefox".equals(browserType)) {
 			driver = initFirefoxDriver(appURL);
-			break;
-		default:
+		} else {
 			System.out.println("browser : " + browserType + " is invalid, Launching Firefox as browser of choice..");
 			driver = initFirefoxDriver(appURL);
 		}
@@ -34,7 +31,7 @@ public class TestBase {
 	private static WebDriver initChromeDriver(String appURL) {
 		System.out.println("Launching google chrome with new profile..");
 		System.setProperty("webdriver.chrome.driver", driverPath);
-		WebDriver driver = (WebDriver) new ChromeDriver();
+		WebDriver driver =  new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.navigate().to(appURL);
 		return driver;
@@ -42,7 +39,7 @@ public class TestBase {
 
 	private static WebDriver initFirefoxDriver(String appURL) {
 		System.out.println("Launching Firefox browser..");
-		WebDriver driver = (WebDriver) new FirefoxDriver();
+		WebDriver driver =  new FirefoxDriver();
 		((WebDriver) driver).manage().window().maximize();
 		((WebDriver) driver).navigate().to(appURL);
 		return (WebDriver) driver;

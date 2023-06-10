@@ -7,7 +7,6 @@ import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
 import com.vsysq.base.ExtentTestManager;
-import com.vsysq.base.TestBase;
 import com.vsysq.pages.BasePage;
 
 public class BasePageTest extends TestBase {
